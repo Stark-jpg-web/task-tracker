@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+button {
+  font-family: var(--mono);
+  font-size: 1rem;
+  }
+.auto-delete {
+  font-size: 1rem;
+}
