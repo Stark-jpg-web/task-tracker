@@ -2,17 +2,14 @@ import React from 'react'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 
-export default function HabitList({ habits, onIncreaseStreak, onDeleteHabit, onTaskCompleted }) {
-  const STREAK_GOAL = 10 // Change this to your desired goal
+export default function HabitList({ habits,  onIncreaseStreak, onDeleteHabit, onTaskCompleted }) {
+  
 
-  const calculatePercentage = (streak) => {
-    return Math.min((streak / STREAK_GOAL) * 100, 100)
-  }
 
   return (
     <div className="habits-list flex flex-col gap-3">
       {habits.map((habit) => {
-        const percentage = calculatePercentage(habit.streak)
+     
         
         return (
           <div
@@ -35,14 +32,14 @@ export default function HabitList({ habits, onIncreaseStreak, onDeleteHabit, onT
             {/* Circular Progress Bar */}
             <div className="w-24 h-24 mx-auto">
               <CircularProgressbar
-                value={percentage}
-                text={`${habit.streak}/${STREAK_GOAL}`}
+                value={habit.streak/habit.streakGoal * 100}
+                text={`${habit.streak}/${habit.streakGoal}`}
                 styles={buildStyles({
                   rotation: 0.25,
                   strokeLinecap: 'round',
                   textSize: '14px',
                   pathTransitionDuration: 0.5,
-                  pathColor: habit.streak >= STREAK_GOAL ? '#10b981' : '#8b5cf6',
+                  pathColor: habit.streak >= habit.streak ? '#10b981' : '#8b5cf6',
                   textColor: '#fff',
                   trailColor: '#374151',
                   backgroundColor: 'green',
@@ -54,10 +51,10 @@ export default function HabitList({ habits, onIncreaseStreak, onDeleteHabit, onT
             <div className="list-controls flex gap-2 justify-center items-center flex-wrap">
               <button
                 onClick={() => onIncreaseStreak(habit.id)}
-                className="text-white min-w-10 border-gray-500 border px-3 py-2 rounded-md hover:bg-gray-700 transition"
+                className="text-white min-w-12 text-lg border-gray-500 border px-3 py-2 rounded-md hover:bg-gray-700 transition"
                 title="Increase streak"
               >
-                ✓
+               <span className="text-xl">+</span> 
               </button>
 
               <button
