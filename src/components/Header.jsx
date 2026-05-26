@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import HabitList from './HabitList'
 export default function Header() {
 
+const [habits,setHabits]=React.useState(() => {
+  const savedHabits = localStorage.getItem('habits');
+  return savedHabits ? JSON.parse(savedHabits) : [];
+})
 
-const [habits,setHabits]=React.useState([ ])
+// Save habits to localStorage whenever they change
+useEffect(() => {
+  localStorage.setItem('habits', JSON.stringify(habits))
+}, [habits])
+
 
 
   //Get date 
@@ -66,7 +74,7 @@ function taskCompleted(id) {
 
 
   return (
-   <header className="flex flex-col gap-6 w-[95%] mx-auto  bg-[#141412] h-[100vh]">
+   <header className="flex flex-col gap-6 w-[95%] mx-auto  bg-[#141412] h-screenn">
   <div className="header-text p-3">
     <h1 className="text-2xl text-white text-gray-900">Daily Habbit Tracker</h1>
     <span className="text-gray-500">Be in the loop.</span>
