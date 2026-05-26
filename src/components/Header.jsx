@@ -77,7 +77,7 @@ function taskCompleted(id) {
     <span className="text-gray-500">{date}</span>
     </div>
     <form onSubmit={getNewHabit} className="flex flex-col">
-    <label htmlFor="new-habit-name" className="text-sm">Habit Name</label>
+    <label htmlFor="new-habit-name" className="text-sm">Habit name</label>
     <input type="text" name="new-habit-name" id="new-habit" placeholder="eg: train" className="border-gray-500 border px-3 py-2 rounded-md mb-5"  />
     <label htmlFor="new-habit-text" className="text-sm">Habit text</label>
     <input type="text" name="new-habit-text" id="new-habit" placeholder="eg: 5km jog before breakfast" className="border-gray-500 border px-3 py-2 rounded-md mb-5"  />
